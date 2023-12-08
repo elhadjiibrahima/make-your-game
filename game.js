@@ -25,8 +25,8 @@ let brickMargin = 10;
 let numberBrickPerLine = 6;
 let numberBrickPerColumn = 6;
 
-let brickOffsetLeft = 140;
-let brickOffsetTop = 100;
+let brickOffsetLeft = 25;
+let brickOffsetTop = 70;
 
 
 /**

@@ -1,26 +1,53 @@
-html, body{
-    width: 100%;
-    height: 100%;
+body {
     margin: 0;
-    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #2c3e50;
 }
+
 
 #container{
     position: relative;
-    width: 800px;
-    height: 800px;
+    text-align: center;
+    width: 38%;
+    height: 50%;
     box-sizing: border-box;
-    background-color: aliceblue;
     margin: 0 auto; /* centrage horizontal */
+    border: 2px solid #34495e; /* Bordure plus foncée */
+    background-color: #ecf0f1; /* Couleur de fond du conteneur */
+
+}
+.game-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#score,
+#life,
+#timer {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#scoreValue,
+#lifeValue,
+#timerValue {
+    font-weight: bold;
+    margin-left: 5px;
 }
 
 #paddle {
     position: absolute;
-    bottom: 50px;
-    left: 200px;
+    bottom: 0px;
+    left: 150px;
     width: 100px;
     height: 20px;
-    background-color: brown;
+    background-color: #3498db;
 }
 
 #ball {
@@ -30,11 +57,16 @@ html, body{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: darkgreen;
+    background-color: #e74c3c;
 }
 
 .brick {
+    width: 40px; 
+    height: 20px; 
+    background-color: #16a085; 
+    border: 1px solid #27ae60;
     position: absolute;
-    background-color: midnightblue;
+    box-sizing: border-box;
+
 }
 
