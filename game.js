@@ -28,7 +28,23 @@ let numberBrickPerColumn = 6;
 let brickOffsetLeft = 25;
 let brickOffsetTop = 70;
 
+let score = 0;
 
+// Ajoutez cette fonction pour mettre à jour l'affichage du score
+function updateScore() {
+    const scoreElement = document.getElementById('scoreValue');
+    if (scoreElement) {
+        scoreElement.textContent = `${score}`;
+    }
+}
+let life =  3
+
+function updateLives() {
+    const livesElement = document.getElementById('lifeValue');
+    if (livesElement) {
+        livesElement.textContent = ` ${lives}`;
+    }
+}
 /**
  * Keyboard event
  */
@@ -110,15 +126,24 @@ function moveBall() {
     if (currentPositionTop < 0) {
         ballDy = -ballDy;
     }
-
-    // Limit Bottom
     if (currentPositionTop + ballRadius * 2 > container.offsetHeight) {
+        life--;
+    // Limit Bottom
+    if (life==0) {
         // ballDy = -ballDy;
         alert('GameOver');
         cancelAnimationFrame(animationFrame);
         location.reload();
 
+    } else {
+        // Réinitialisez la position de la balle et du paddle
+        currentPositionLeft = container.offsetWidth / 2 - ballRadius;
+        currentPositionTop = container.offsetHeight - paddleHeight - ballRadius * 2;
+        ballDx = 2;
+        ballDy = -2;
     }
+    updateLives();
+}
 
     currentPositionLeft += ballDx;
     currentPositionTop += ballDy;
@@ -181,7 +206,8 @@ function checkCollisionBricks() {
             ballDy = -ballDy;
 
             container.removeChild(b);
-
+             score += 10;
+             updateScore();
             bricks.splice(i, 1);
         }
     }
