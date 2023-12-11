@@ -4,6 +4,9 @@ const container = document.querySelector('#container');
 const paddle = document.querySelector('#paddle');
 const ball = document.querySelector('#ball');
 const bricks = [];
+const pause=document.querySelector('#pause')
+
+pause.addEventListener('click',)
 
 let animationFrame;
 
