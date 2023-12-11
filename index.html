@@ -18,9 +18,27 @@
         <div id="paddle"></div>
     </div>
     <div class="button">
-        <button id="pause"> Pause</button>
-        <button id="continue">Continue</button>
+        <button id="pause" onclick="pauseFunction()">Pause</button>
+        <button id="continue" onclick="continueFunction()">Continue</button>
     </div> 
     <script src='game.js'></script>
+    <script>
+        var intervalId; // Variable pour stocker l'ID de l'intervalle
+
+        function pauseFunction() {
+            clearInterval(intervalId); // Pause l'intervalle en utilisant l'ID
+            document.getElementById('pause').style.display = 'none';
+            document.getElementById('continue').style.display = 'inline-block';
+        }
+
+        function continueFunction() {
+            intervalId = setInterval(function() {
+                // Code à exécuter pendant l'intervalle (remplacez cela par votre propre code)
+                console.log('Continuing...');
+            }, 1000); // Interval en millisecondes (1 seconde dans cet exemple)
+            document.getElementById('pause').style.display = 'inline-block';
+            document.getElementById('continue').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

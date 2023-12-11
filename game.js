@@ -4,9 +4,6 @@ const container = document.querySelector('#container');
 const paddle = document.querySelector('#paddle');
 const ball = document.querySelector('#ball');
 const bricks = [];
-const pause=document.querySelector('#pause')
-
-pause.addEventListener('click',)
 
 let animationFrame;
 
@@ -26,7 +23,7 @@ let brickHeight = 22;
 let brickMargin = 10;
 
 let numberBrickPerLine = 6;
-let numberBrickPerColumn = 6;
+let numberBrickPerColumn = 4;
 
 let brickOffsetLeft = 25;
 let brickOffsetTop = 70;
