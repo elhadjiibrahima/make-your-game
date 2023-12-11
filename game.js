@@ -42,12 +42,32 @@ let life =  3
 function updateLives() {
     const livesElement = document.getElementById('lifeValue');
     if (livesElement) {
-        livesElement.textContent = ` ${lives}`;
+        livesElement.textContent = ` ${life}`;
+    }
+}
+let isPaused = false;
+
+function togglePause() {
+    isPaused = !isPaused;
+
+    if (isPaused) {
+        cancelAnimationFrame(animationFrame);
+    } else {
+        loop();
     }
 }
 /**
  * Keyboard event
  */
+function initClick() {
+    const pauseButton = document.getElementById('pause');
+    const resumeButton = document.getElementById('continue');
+
+    if (pauseButton && resumeButton) {
+        pauseButton.addEventListener('click', togglePause, false);
+        resumeButton.addEventListener('click', togglePause, false);
+    }
+}
 function initKeyboardListener() {
     document.addEventListener('keydown', onKeyDown, false);
     document.addEventListener('keyup', onKeyUp, false);
@@ -138,7 +158,7 @@ function moveBall() {
     } else {
         // Réinitialisez la position de la balle et du paddle
         currentPositionLeft = container.offsetWidth / 2 - ballRadius;
-        currentPositionTop = container.offsetHeight - paddleHeight - ballRadius * 2;
+        currentPositionTop = container.offsetHeight - ballRadius * 2;
         ballDx = 2;
         ballDy = -2;
     }
@@ -261,6 +281,7 @@ function loop(){
  */
 function init() {
     //Init
+    initClick();
     initKeyboardListener();
     createBrick();
 
