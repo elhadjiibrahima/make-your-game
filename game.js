@@ -14,8 +14,8 @@ const step = 20;
 
 // Ball config
 let ballRadius = 10;
-let ballDx = 2;
-let ballDy = -2;
+let ballDx = 3;
+let ballDy = -3;
 
 // Brick config
 let brickWidth = 100;
@@ -29,6 +29,48 @@ let brickOffsetLeft = 25;
 let brickOffsetTop = 70;
 
 let score = 0;
+
+// Timer config
+let seconds = 0;
+let minutes = 0;
+let timerInterval;
+
+// Function to update the timer display
+function updateTimer() {
+    const timerElement = document.getElementById('timerValue');
+    if (timerElement) {
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+}
+
+// Function to start the timer
+function startTimer() {
+    timerInterval = setInterval(function () {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+        }
+        updateTimer();
+    }, 1000);
+}
+
+// ... (existing code)
+
+// Function to stop the timer
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+// ... (existing code)
+
+// Reset the timer
+function resetTimer() {
+    seconds = 0;
+    minutes = 0;
+    updateTimer();
+}
+
 
 // Ajoutez cette fonction pour mettre à jour l'affichage du score
 function updateScore() {
@@ -52,7 +94,9 @@ function togglePause() {
 
     if (isPaused) {
         cancelAnimationFrame(animationFrame);
+        stopTimer();
     } else {
+        startTimer();
         loop();
     }
 }
@@ -64,7 +108,8 @@ function initClick() {
     const resumeButton = document.getElementById('continue');
 
     if (pauseButton && resumeButton) {
-        pauseButton.addEventListener('click', togglePause, false);
+        pauseButton.addEventListener('click', togglePause, false,stopTimer( ));
+
         resumeButton.addEventListener('click', togglePause, false);
     }
 }
@@ -271,9 +316,10 @@ function loop(){
         moveBall();
         checkCollisionPaddle();
         checkCollisionBricks();
-
+        
         loop();
     })
+    
 }
 
 /**
@@ -284,6 +330,8 @@ function init() {
     initClick();
     initKeyboardListener();
     createBrick();
+    resetTimer(); 
+     startTimer();
 
     loop();
 }
