@@ -24,6 +24,7 @@
     <div class="button">
         <button id="pause" onclick="pauseFunction()">Pause</button>
         <button id="continue" onclick="continueFunction()">Continue</button>
+        <button id="redemarrer">Rejouer</button>
     </div> 
     <script src='game.js'></script>
     <script>
@@ -32,6 +33,7 @@
         function pauseFunction() {
             clearInterval(intervalId); // Pause l'intervalle en utilisant l'ID
             document.getElementById('pause').style.display = 'none';
+            document.getElementById('redemarrer').style.display='inline-block'
             document.getElementById('continue').style.display = 'inline-block';
         }
 
@@ -41,6 +43,7 @@
                 console.log('Continuing...');
             }, 1000); // Interval en millisecondes (1 seconde dans cet exemple)
             document.getElementById('pause').style.display = 'inline-block';
+            document.getElementById('redemarrer').style.display='none'
             document.getElementById('continue').style.display = 'none';
         }
     </script>
