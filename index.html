@@ -28,24 +28,38 @@
     </div> 
     <script src='game.js'></script>
     <script>
-        var intervalId; // Variable pour stocker l'ID de l'intervalle
+     var intervalId; // Variable pour stocker l'ID de l'intervalle
 
-        function pauseFunction() {
-            clearInterval(intervalId); // Pause l'intervalle en utilisant l'ID
-            document.getElementById('pause').style.display = 'none';
-            document.getElementById('redemarrer').style.display='inline-block'
-            document.getElementById('continue').style.display = 'inline-block';
-        }
+function pauseFunction() {
+    clearInterval(intervalId); // Pause l'intervalle en utilisant l'ID
+    document.getElementById('pause').style.display = 'none';
+    document.getElementById('redemarrer').style.display = 'inline-block';
+    document.getElementById('continue').style.display = 'inline-block';
+}
 
-        function continueFunction() {
-            intervalId = setInterval(function() {
-                // Code à exécuter pendant l'intervalle (remplacez cela par votre propre code)
-                console.log('Continuing...');
-            }, 1000); // Interval en millisecondes (1 seconde dans cet exemple)
-            document.getElementById('pause').style.display = 'inline-block';
-            document.getElementById('redemarrer').style.display='none'
-            document.getElementById('continue').style.display = 'none';
+function continueFunction() {
+    intervalId = setInterval(function () {
+        // Code à exécuter pendant l'intervalle (remplacez cela par votre propre code)
+        console.log('Continuing...');
+    }, 1000); // Interval en millisecondes (1 seconde dans cet exemple)
+    document.getElementById('pause').style.display = 'inline-block';
+    document.getElementById('redemarrer').style.display = 'none';
+    document.getElementById('continue').style.display = 'none';
+}
+
+// Ajouter un gestionnaire d'événements clavier
+document.addEventListener("keydown", function (event) {
+    // Vérifier si la touche pressée est la barre d'espace (code 32)
+    if (event.code === "Space") {
+        // Si l'intervalle est en cours, faites une pause, sinon, continuez
+        if (intervalId) {
+            pauseFunction();
+        } else {
+            continueFunction();
         }
+    }
+});
+
     </script>
 </body>
 </html>

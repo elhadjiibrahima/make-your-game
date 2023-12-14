@@ -109,6 +109,7 @@ function initClick() {
 
     if (pauseButton && resumeButton) {
         pauseButton.addEventListener('click', togglePause, false,stopTimer( ));
+        
 
         resumeButton.addEventListener('click', togglePause, false);
     }
@@ -116,6 +117,12 @@ function initClick() {
 function initKeyboardListener() {
     document.addEventListener('keydown', onKeyDown, false);
     document.addEventListener('keyup', onKeyUp, false);
+    document.addEventListener('keydown', onSpaceKeyDown, false);
+}
+function onSpaceKeyDown(event) {
+    if (event.code === 'Space') {
+        togglePause();
+    }
 }
 
 /**
@@ -290,8 +297,8 @@ function createBrick() {
             let brick = document.createElement('div');
             brick.className = 'brick';
 
-            brick.style.width = brickWidth + 'px';
-            brick.style.height = brickHeight + 'px';
+            brick.style.width = 15 + '%';
+            brick.style.height = 3 + '%';
             brick.style.left = positionX + 'px';
             brick.style.top = positionY + 'px';
 

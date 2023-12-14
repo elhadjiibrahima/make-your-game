@@ -91,8 +91,8 @@ body {
 }
 
 .brick {
-    width: 40px; 
-    height: 20px; 
+    width: 10%; 
+    height: 5%; 
     background-color: #16a085; 
     border: 1px solid #27ae60;
     position: absolute;
