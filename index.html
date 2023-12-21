@@ -24,7 +24,7 @@
     <div class="button">
         <button id="pause" onclick="pauseFunction()">Pause</button>
         <button id="continue" onclick="continueFunction()">Continue</button>
-        <button id="redemarrer">Rejouer</button>
+        <button id="redemarrer" onclick="location.reload()">Rejouer</button>
     </div> 
     <script src='game.js'></script>
     <script>
@@ -48,17 +48,17 @@ function continueFunction() {
 }
 
 // Ajouter un gestionnaire d'événements clavier
-document.addEventListener("keydown", function (event) {
-    // Vérifier si la touche pressée est la barre d'espace (code 32)
-    if (event.code === "Space") {
-        // Si l'intervalle est en cours, faites une pause, sinon, continuez
-        if (intervalId) {
-            pauseFunction();
-        } else {
-            continueFunction();
-        }
-    }
-});
+// document.addEventListener("keydown", function (event) {
+//     // Vérifier si la touche pressée est la barre d'espace (code 32)
+//     if (event.code === "Space") {
+//         // Si l'intervalle est en cours, faites une pause, sinon, continuez
+//         if (intervalId) {
+//             pauseFunction();   
+//         } else {
+//             continueFunction();
+//         }
+//     }
+// });  
 
     </script>
 </body>

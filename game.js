@@ -180,6 +180,17 @@ function movePaddle() {
 /**
  * Ball move
  */
+
+function checkGameOver() {
+    if (life <= 0) {
+        // Affiche un message de fin de jeu
+        alert('Game Over');
+        // Arrête la boucle du jeu
+        cancelAnimationFrame(animationFrame);
+        // Recharge la page pour permettre au joueur de rejouer
+        location.reload();
+    }
+}
 function moveBall() {
     let currentPositionLeft = ball.offsetLeft;
     let currentPositionTop = ball.offsetTop;
@@ -201,12 +212,9 @@ function moveBall() {
     if (currentPositionTop + ballRadius * 2 > container.offsetHeight) {
         life--;
     // Limit Bottom
-    if (life==0) {
-        // ballDy = -ballDy;
-        alert('GameOver');
-        cancelAnimationFrame(animationFrame);
-        location.reload();
-
+    if (life<=0) {
+       checkGameOver()  
+      
     } else {
         // Réinitialisez la position de la balle et du paddle
         currentPositionLeft = container.offsetWidth / 2 - ballRadius;
@@ -300,7 +308,7 @@ function createBrick() {
             brick.style.width = 15 + '%';
             brick.style.height = 3 + '%';
             brick.style.left = positionX + 'px';
-            brick.style.top = positionY + 'px';
+            brick.style.top = positionY + 'px'; 
 
             container.appendChild(brick);
 
@@ -314,9 +322,7 @@ function createBrick() {
     }
 }
 
-/**
- * 60 FPS rendering
- */
+
 function loop(){
     animationFrame = window.requestAnimationFrame(function() {
         movePaddle();
@@ -324,23 +330,28 @@ function loop(){
         checkCollisionPaddle();
         checkCollisionBricks();
         
+        
         loop();
     })
     
 }
 
-/**
- * Init game
- */
+
+createBrick();
 function init() {
     //Init
     initClick();
     initKeyboardListener();
-    createBrick();
     resetTimer(); 
-     startTimer();
-
+    startTimer();
+    
     loop();
+
+    
 }
 
-init();
+document.addEventListener('keydown', function (e) {
+   if (e.code=='Space'){
+    init();
+   } 
+});
