@@ -120,7 +120,7 @@ function initKeyboardListener() {
     document.addEventListener('keydown', onSpaceKeyDown, false);
 }
 function onSpaceKeyDown(event) {
-    if (event.code === 'Space') {
+    if (event.code === 'P') {
         togglePause();
     }
 }
@@ -351,7 +351,7 @@ function init() {
 }
 
 document.addEventListener('keydown', function (e) {
-   if (e.code=='Space'){
+   if (e.code=='Enter'){
     init();
    } 
 });
