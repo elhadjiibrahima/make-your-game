@@ -26,6 +26,12 @@
         <button id="continue" onclick="continueFunction()">Continue</button>
         <button id="redemarrer" onclick="location.reload()">Rejouer</button>
     </div> 
+    <div id="gameOverModal" class="modal">
+        <h2>Game Over!</h2>
+        <p>Votre score final est <span id="finalScore">0</span>.</p>
+        <!-- Ajoutez d'autres informations de fin de partie ici -->
+        <button onclick="location.reload()">Rejouer</button>
+    </div>
     <script src='game.js'></script>
     <script>
      var intervalId; // Variable pour stocker l'ID de l'intervalle

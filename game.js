@@ -180,17 +180,27 @@ function movePaddle() {
 /**
  * Ball move
  */
-
+function showGameOverModal(score) {
+    // Affiche la fenêtre modale de Game Over avec le score final
+    document.getElementById('finalScore').innerText = score;
+    document.getElementById('gameOverModal').style.display = 'block';
+       
+}
+let gameOver=false
 function checkGameOver() {
-    if (life <= 0) {
-        // Affiche un message de fin de jeu
-        alert('Game Over');
+    if (life <= 0 && !gameOver) {
         // Arrête la boucle du jeu
         cancelAnimationFrame(animationFrame);
+        // Affiche un message de fin de jeu
+        showGameOverModal(score)
         // Recharge la page pour permettre au joueur de rejouer
-        location.reload();
+        stopTimer()
+        life =0 
+
     }
 }
+
+
 function moveBall() {
     let currentPositionLeft = ball.offsetLeft;
     let currentPositionTop = ball.offsetTop;
@@ -214,13 +224,14 @@ function moveBall() {
     // Limit Bottom
     if (life<=0) {
        checkGameOver()  
+       
       
     } else {
         // Réinitialisez la position de la balle et du paddle
         currentPositionLeft = container.offsetWidth / 2 - ballRadius;
         currentPositionTop = container.offsetHeight - ballRadius * 2;
-        ballDx = 2;
-        ballDy = -2;
+        ballDx = 3;
+        ballDy = -3;
     }
     updateLives();
 }
@@ -329,6 +340,9 @@ function loop(){
         moveBall();
         checkCollisionPaddle();
         checkCollisionBricks();
+        checkGameOver()
+        
+
         
         
         loop();
