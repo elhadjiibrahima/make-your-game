@@ -223,9 +223,10 @@ function moveBall() {
         life--;
     // Limit Bottom
     if (life<=0) {
+        ball.style.display='none'
        checkGameOver()  
        
-      
+
     } else {
         // Réinitialisez la position de la balle et du paddle
         currentPositionLeft = container.offsetWidth / 2 - ballRadius;
@@ -363,9 +364,10 @@ function init() {
 
     
 }
-
+ a=true;
 document.addEventListener('keydown', function (e) {
-   if (e.code=='Enter'){
+   if (e.code=='Enter' && a){
+    a=false;
     init();
    } 
 });
