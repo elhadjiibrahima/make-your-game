@@ -221,6 +221,7 @@ function moveBall() {
     }
     if (currentPositionTop + ballRadius * 2 > container.offsetHeight) {
         life--;
+        togglePause();
     // Limit Bottom
     if (life<=0) {
         ball.style.display='none'
@@ -230,12 +231,15 @@ function moveBall() {
     } else {
         // Réinitialisez la position de la balle et du paddle
         currentPositionLeft = container.offsetWidth / 2 - ballRadius;
-        currentPositionTop = container.offsetHeight - ballRadius * 2;
+        currentPositionTop = container.offsetHeight - 30 - ballRadius * 2;
+        paddle.style.left = 250 + 'px'
         ballDx = 3;
         ballDy = -3;
+        cancelAnimationFrame(animationFrame);
     }
     updateLives();
 }
+cancelAnimationFrame(animationFrame)
 
     currentPositionLeft += ballDx;
     currentPositionTop += ballDy;
