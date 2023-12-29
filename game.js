@@ -23,7 +23,7 @@ let brickHeight = 22;
 let brickMargin = 10;
 
 let numberBrickPerLine = 6;
-let numberBrickPerColumn = 4;
+let numberBrickPerColumn = 2;
 
 let brickOffsetLeft = 25;
 let brickOffsetTop = 70;
@@ -180,7 +180,7 @@ function movePaddle() {
 /**
  * Ball move
  */
-function showGameOverModal(score) {
+function  showGameOverModal(score) {
     // Affiche la fenêtre modale de Game Over avec le score final
     document.getElementById('finalScore').innerText = score;
     document.getElementById('gameOverModal').style.display = 'block';
@@ -235,7 +235,6 @@ function moveBall() {
         paddle.style.left = 250 + 'px'
         ballDx = 3;
         ballDy = -3;
-        cancelAnimationFrame(animationFrame);
     }
     updateLives();
 }
@@ -247,6 +246,8 @@ cancelAnimationFrame(animationFrame)
 
     ball.style.left = currentPositionLeft + 'px';
     ball.style.top = currentPositionTop + 'px';
+    checkCollisionBricks()
+    checkCollisionPaddle()
 }
 
 /**
@@ -305,6 +306,16 @@ function checkCollisionBricks() {
              score += 10;
              updateScore();
             bricks.splice(i, 1);
+            if (bricks.length==0){
+                currentPositionLeft = container.offsetWidth / 2 - ballRadius;
+                currentPositionTop = container.offsetHeight - 30 - ballRadius * 2;
+                paddle.style.left = 250 + 'px'
+                ballDx = 3;
+                ballDy = -3;
+                numberBrickPerColumn ++;
+                createBrick()
+            }
+
         }
     }
 }
@@ -343,8 +354,8 @@ function loop(){
     animationFrame = window.requestAnimationFrame(function() {
         movePaddle();
         moveBall();
-        checkCollisionPaddle();
-        checkCollisionBricks();
+        // checkCollisionPaddle();
+        // checkCollisionBricks();
         checkGameOver()
         
 
