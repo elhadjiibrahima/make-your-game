@@ -279,6 +279,22 @@ function checkCollisionPaddle() {
     }
 }
 
+function resetGame() {
+    currentPositionLeft = container.offsetWidth / 2 - ballRadius;
+    currentPositionTop = container.offsetHeight - 30 - ballRadius * 2;
+    paddle.style.left =container.offsetWidth / 2 - paddle.offsetWidth / 2 + 'px';
+    ball.style.left = currentPositionLeft + 'px';  // Réinitialise la position de la balle
+    ball.style.top = currentPositionTop + 'px';
+    ballDx = 3;
+    ballDy = -3;
+    numberBrickPerColumn++;
+    createBrick();
+   gameOver=false
+   
+
+}
+
+
 /**
  * Check collision between bricks and ball
  */
@@ -286,7 +302,7 @@ function checkCollisionBricks() {
     let ballX = ball.offsetLeft + ballRadius;
     let ballY = ball.offsetTop + ballRadius;
 
-    for(let i = bricks.length - 1; i >= 0; i--) {
+    for (let i = bricks.length - 1; i >= 0; i--) {
         let b = bricks[i];
 
         let brickLeft = b.offsetLeft;
@@ -303,22 +319,18 @@ function checkCollisionBricks() {
             ballDy = -ballDy;
 
             container.removeChild(b);
-             score += 10;
-             updateScore();
+            score += 10;
+            updateScore();
             bricks.splice(i, 1);
-            if (bricks.length==0){
-                currentPositionLeft = container.offsetWidth / 2 - ballRadius;
-                currentPositionTop = container.offsetHeight - 30 - ballRadius * 2;
-                paddle.style.left = 250 + 'px'
-                ballDx = 3;
-                ballDy = -3;
-                numberBrickPerColumn ++;
-                createBrick()
-            }
 
+            if (bricks.length === 0) {
+                // cancelAnimationFrame(animationFrame);
+                resetGame(); // Nouvelle fonction pour réinitialiser le jeu
+            }
         }
     }
 }
+
 
 /**
  * Create all bricks
