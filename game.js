@@ -1,5 +1,3 @@
-
-// Elements HTML
 const container = document.querySelector('#container');
 const paddle = document.querySelector('#paddle');
 const ball = document.querySelector('#ball');
@@ -35,7 +33,6 @@ let seconds = 0;
 let minutes = 0;
 let timerInterval;
 
-// Function to update the timer display
 function updateTimer() {
     const timerElement = document.getElementById('timerValue');
     if (timerElement) {
@@ -43,7 +40,7 @@ function updateTimer() {
     }
 }
 
-// Function to start the timer
+
 function startTimer() {
     timerInterval = setInterval(function () {
         seconds++;
@@ -55,24 +52,17 @@ function startTimer() {
     }, 1000);
 }
 
-// ... (existing code)
 
-// Function to stop the timer
 function stopTimer() {
     clearInterval(timerInterval);
 }
 
-// ... (existing code)
-
-// Reset the timer
 function resetTimer() {
     seconds = 0;
     minutes = 0;
     updateTimer();
 }
 
-
-// Ajoutez cette fonction pour mettre à jour l'affichage du score
 function updateScore() {
     const scoreElement = document.getElementById('scoreValue');
     if (scoreElement) {
@@ -100,9 +90,7 @@ function togglePause() {
         loop();
     }
 }
-/**
- * Keyboard event
- */
+
 function initClick() {
     const pauseButton = document.getElementById('pause');
     const resumeButton = document.getElementById('continue');
@@ -125,9 +113,7 @@ function onSpaceKeyDown(event) {
     }
 }
 
-/**
- * On key down keyboard
- */
+
 function onKeyDown(event) {
     if (event.key === 'ArrowRight') {
         moveRight = true;
@@ -137,9 +123,7 @@ function onKeyDown(event) {
     }
 }
 
-/**
- * On key up keyboard
- */
+
 function onKeyUp(event) {
     if (event.key === 'ArrowRight') {
         moveRight = false;
@@ -149,9 +133,6 @@ function onKeyUp(event) {
     }
 }
 
-/**
- * Move Paddle
- */
 function movePaddle() {
 
 
@@ -177,9 +158,7 @@ function movePaddle() {
     paddle.style.left = currentPositionLeft + 'px';
 }
 
-/**
- * Ball move
- */
+
 function  showGameOverModal(score) {
     // Affiche la fenêtre modale de Game Over avec le score final
     document.getElementById('finalScore').innerText = score;
@@ -250,9 +229,7 @@ cancelAnimationFrame(animationFrame)
     checkCollisionPaddle()
 }
 
-/**
- * Check collision between paddle and ball
- */
+
 function checkCollisionPaddle() {
     let ballX = ball.offsetLeft + ballRadius;
     let ballBottomY = ball.offsetTop + ballRadius * 2;
@@ -294,10 +271,6 @@ function resetGame() {
 
 }
 
-
-/**
- * Check collision between bricks and ball
- */
 function checkCollisionBricks() {
     let ballX = ball.offsetLeft + ballRadius;
     let ballY = ball.offsetTop + ballRadius;
@@ -331,10 +304,6 @@ function checkCollisionBricks() {
     }
 }
 
-
-/**
- * Create all bricks
- */
 function createBrick() {
     let positionX = brickOffsetLeft;
     let positionY = brickOffsetTop;
@@ -369,27 +338,21 @@ function loop(){
         // checkCollisionPaddle();
         // checkCollisionBricks();
         checkGameOver()
-        
-
-        
-        
+      
         loop();
     })
     
 }
 
-
 createBrick();
+
 function init() {
-    //Init
     initClick();
     initKeyboardListener();
     resetTimer(); 
     startTimer();
     
-    loop();
-
-    
+    loop();    
 }
  a=true;
 document.addEventListener('keydown', function (e) {
