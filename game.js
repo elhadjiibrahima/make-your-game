@@ -200,7 +200,6 @@ function moveBall() {
     }
     if (currentPositionTop + ballRadius * 2 > container.offsetHeight) {
         life--;
-        togglePause();
     // Limit Bottom
     if (life<=0) {
         ball.style.display='none'
@@ -225,8 +224,6 @@ cancelAnimationFrame(animationFrame)
 
     ball.style.left = currentPositionLeft + 'px';
     ball.style.top = currentPositionTop + 'px';
-    checkCollisionBricks()
-    checkCollisionPaddle()
 }
 
 
@@ -335,8 +332,8 @@ function loop(){
     animationFrame = window.requestAnimationFrame(function() {
         movePaddle();
         moveBall();
-        // checkCollisionPaddle();
-        // checkCollisionBricks();
+        checkCollisionPaddle();
+        checkCollisionBricks();
         checkGameOver()
       
         loop();
